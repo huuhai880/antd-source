@@ -3,17 +3,16 @@ import { Suspense, lazy, Fragment } from 'react'
 
 // ** Utils
 // import { isUserLoggedIn } from '@utils'
-import { useLayout } from '@hooks/useLayout'
-import { useRouterTransition } from '@hooks/useRouterTransition'
+import { useRouterTransition } from '../utils/hooks/useRouterTransition'
 
 // ** Custom Components
-// import LayoutWrapper from '@layouts/components/layout-wrapper'
+import LayoutWrapper from '@src/layouts/LayoutWrapper'
 
 // ** Router Components
-import { BrowserRouter as AppRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter as AppRouter, Route, Routes as Switch, Navigate } from 'react-router-dom'
 
 // ** Routes & Default Routes
-import { DefaultRoute, Routes } from './routes'
+import { DefaultRoute, Routes } from './routers'
 
 // ** Layouts
 import BlankLayout from '@src/layouts/BlankLayout'
@@ -22,7 +21,7 @@ import DefaultLayout from '@src/layouts/DefaultLayout'
 
 const Router = () => {
     // ** Hooks
-    const { setLayout, setLastLayout } = useLayout()
+
     const { transition, setTransition } = useRouterTransition()
 
     // ** Default Layout
@@ -52,7 +51,7 @@ const Router = () => {
         return { LayoutRoutes, LayoutPaths }
     }
 
-    //const NotAuthorized = lazy(() => import('@src/components/pages/misc/NotAuthorized'))
+    const NotAuthorized = lazy(() => import('@src/layouts/NotAuthorized'))
 
     // ** Init Error Component
     //const Error = lazy(() => import('@src/components/pages/misc/Error'))
@@ -74,15 +73,15 @@ const Router = () => {
         //      ** Then redirect user to login
         //      */
 
-        //     return <Redirect to='/login' />
+        //     return <Navigate to='/login' />
         // } else if (route.meta && route.meta.authRoute && isUserLoggedIn()) {
         //     // ** If route has meta and authRole and user is Logged in then redirect user to home page (DefaultRoute)
-        //     return <Redirect to='/' />
+        //     return <Navigate to='/' />
         // } else {
         //     // ** If none of the above render component
         //     return <route.component {...props} />
         // }
-        return <Redirect to='/' />
+        return <Navigate to='/' />
     }
 
     // ** Return Route to Render
@@ -109,10 +108,8 @@ const Router = () => {
                 <Route path={LayoutPaths} key={index}>
                     <LayoutTag
                         layout={layout}
-                        setLayout={setLayout}
                         transition={transition}
                         routerProps={routerProps}
-                        setLastLayout={setLastLayout}
                         setTransition={setTransition}
                         currentActiveItem={currentActiveItem}
                     >
@@ -139,36 +136,34 @@ const Router = () => {
                                                             <FinalRoute route={route} {...props} />
                                                         </Fragment>
                                                     ) : (
-                                                        // <LayoutWrapper
-                                                        //     layout={_defaultLayout}
-                                                        //     transition={transition}
-                                                        //     setTransition={setTransition}
-                                                        //     /* Conditional props */
-                                                        //     /*eslint-disable */
-                                                        //     {...(route.appLayout
-                                                        //         ? {
-                                                        //             appLayout: route.appLayout
-                                                        //         }
-                                                        //         : {})}
-                                                        //     {...(route.meta
-                                                        //         ? {
-                                                        //             routeMeta: route.meta
-                                                        //         }
-                                                        //         : {})}
-                                                        //     {...(route.className
-                                                        //         ? {
-                                                        //             wrapperClass: route.className
-                                                        //         }
-                                                        //         : {})}
-                                                        // /*eslint-enable */
-                                                        // >
-                                                        //     <Suspense fallback={null}>
-                                                        //         <FinalRoute route={route} {...props} />
-                                                        //     </Suspense>
-                                                        // </LayoutWrapper>
-                                                        <Suspense fallback={null}>
-                                                            <FinalRoute route={route} {...props} />
-                                                        </Suspense>
+                                                        <LayoutWrapper
+                                                            layout={DefaultLayout}
+                                                            transition={transition}
+                                                            setTransition={setTransition}
+                                                            /* Conditional props */
+                                                            /*eslint-disable */
+                                                            {...(route.appLayout
+                                                                ? {
+                                                                    appLayout: route.appLayout
+                                                                }
+                                                                : {})}
+                                                            {...(route.meta
+                                                                ? {
+                                                                    routeMeta: route.meta
+                                                                }
+                                                                : {})}
+                                                            {...(route.className
+                                                                ? {
+                                                                    wrapperClass: route.className
+                                                                }
+                                                                : {})}
+                                                        /*eslint-enable */
+                                                        >
+                                                            <Suspense fallback={null}>
+                                                                <FinalRoute route={route} {...props} />
+                                                            </Suspense>
+                                                        </LayoutWrapper>
+
                                                     )}
                                                 </Fragment>
                                             )
@@ -184,20 +179,21 @@ const Router = () => {
     }
 
     return (
-        <AppRouter basename={process.env.REACT_APP_BASENAME}>
+        <AppRouter basename={'/'}>
             <Switch>
-                {/* If user is logged in Redirect user to DefaultRoute else to login */}
+                {/* If user is logged in Navigate user to DefaultRoute else to login */}
                 <Route
                     exact
                     path='/'
                     render={() => {
-                        return isUserLoggedIn() ? <Redirect to={DefaultRoute} /> : <Redirect to='/login' />
+                        // return isUserLoggedIn() ? <Navigate to={DefaultRoute} /> : <Navigate to='/login' />
+                        return <Navigate to={'/login'} />
                     }}
                 />
                 {/* Not Auth Route */}
                 <Route
                     exact
-                    path='/misc/not-authorized'
+                    path='/not-authorized'
                     render={() => (
                         <Layouts.BlankLayout>
                             <NotAuthorized />

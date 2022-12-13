@@ -13,7 +13,10 @@ module.exports = {
   },
   webpack: {
     alias: {
-      '@src': path.resolve(__dirname, 'src')
+      '@src': path.resolve(__dirname, 'src'),
+      '@hooks': path.resolve(__dirname, 'src/utils/hooks'),
+      '@store': path.resolve(__dirname, 'src/redux'),
+      '@configs': path.resolve(__dirname, 'src/configs')
     }
   }
 }

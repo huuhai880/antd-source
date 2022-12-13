@@ -1,13 +1,13 @@
 // ** React Imports
 import React from 'react'
 
-const DefaultLayout = props => {
+const Layout = props => {
 
   return (
     <div>
-      
+        Layout
     </div>
   )
 }
 
-export default DefaultLayout
+export default Layout
