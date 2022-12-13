@@ -1,12 +1,12 @@
 // ** Core Layout Import
 // !Do not remove the Layout import
-import Layout from './components/DefaultLayout'
+import Layout from './components'
 
 // ** Menu Items Array
 import navigation from '@src/navigation'
 
-const VerticalLayout = props => {
-  
+const DefaultLayout = props => {
+
   return (
     <Layout menuData={navigation} {...props}>
       {props.children}
@@ -14,4 +14,4 @@ const VerticalLayout = props => {
   )
 }
 
-export default VerticalLayout
+export default DefaultLayout

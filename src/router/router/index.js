@@ -1,7 +1,7 @@
 // ** Routes Imports
 
 // ** Default Route
-const DefaultRoute = '/dashboard'
+const DefaultRoute = '/'
 
 // ** Merge Routes
 const Routes = []
