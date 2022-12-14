@@ -5,7 +5,7 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined
 } from '@ant-design/icons';
-import { Layout as LayoutAntd, Menu, theme } from 'antd';
+import { Layout as LayoutAntd, Breadcrumb, theme } from 'antd';
 import NavbarLayout from './navbar';
 const { Header, Sider, Content } = LayoutAntd;
 
@@ -30,8 +30,9 @@ const Layout = ({ menu, navbar, footer, menuData, children, routerProps, setLast
   return (
     <LayoutAntd>
       <NavbarLayout collapsed={collapsed} />
-      <LayoutAntd className="site-layout" style={{ marginLeft: 195 }}>
-        <Header style={{
+
+      <LayoutAntd className="site-layout"  >
+        <Header theme="dark" style={{
           padding: 0, background: colorBgContainer, height: '5vh'
         }}
         >
@@ -40,6 +41,11 @@ const Layout = ({ menu, navbar, footer, menuData, children, routerProps, setLast
             onClick: () => setCollapsed(!collapsed),
           })}
         </Header>
+        <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item>Home</Breadcrumb.Item>
+          <Breadcrumb.Item>List</Breadcrumb.Item>
+          <Breadcrumb.Item>App</Breadcrumb.Item>
+        </Breadcrumb>
         <Content
           style={{
             margin: '8px',
