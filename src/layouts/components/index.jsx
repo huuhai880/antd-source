@@ -30,7 +30,7 @@ const Layout = ({ menu, navbar, footer, menuData, children, routerProps, setLast
   return (
     <LayoutAntd>
       <NavbarLayout collapsed={collapsed} />
-      <LayoutAntd className="site-layout" style={{ marginLeft: 200 }}>
+      <LayoutAntd className="site-layout" style={{ marginLeft: 195 }}>
         <Header style={{
           padding: 0, background: colorBgContainer, height: '5vh'
         }}
