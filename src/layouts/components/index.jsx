@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
         <NavbarLayout />
 
         <Breadcrumb style={{ margin: '16px' }}>
-          <Breadcrumb.Item href="">
+          <Breadcrumb.Item href="/dashboard">
             <HomeOutlined />
           </Breadcrumb.Item>
           <Breadcrumb.Item href="">
