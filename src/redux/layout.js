@@ -14,20 +14,15 @@ export const layoutSlice = createSlice({
   name: 'layout',
   initialState: {
     menuCollapsed: initialMenuCollapsed(),
-    navbarType: themeConfig.layout.navbar.type,
     menuHidden: themeConfig.layout.menu.isHidden,
     contentWidth: themeConfig.layout.contentWidth,
+    contentWidthMenu: themeConfig.layout.menu.widthMenuMax,
     routerTransition: themeConfig.layout.routerTransition,
   },
   reducers: {
 
-
     handleLayout: (state, action) => {
       state.layout = action.payload
-    },
-
-    handleNavbarType: (state, action) => {
-      state.navbarType = action.payload
     },
     handleMenuHidden: (state, action) => {
       state.menuHidden = action.payload
@@ -37,6 +32,11 @@ export const layoutSlice = createSlice({
     },
     handleMenuCollapsed: (state, action) => {
       state.menuCollapsed = action.payload
+      if (action.payload) {
+        state.contentWidthMenu = themeConfig.layout.menu.widthMenuMin
+      } else {
+        state.contentWidthMenu = themeConfig.layout.menu.widthMenuMax
+      }
       window.localStorage.setItem('menuCollapsed', JSON.stringify(action.payload))
     },
     handleRouterTransition: (state, action) => {
@@ -48,7 +48,6 @@ export const layoutSlice = createSlice({
 export const {
   handleLayout,
   handleMenuHidden,
-  handleNavbarType,
   handleContentWidth,
   handleMenuCollapsed,
   handleRouterTransition

@@ -4,18 +4,22 @@
 const themeConfig = {
     app: {
       appName: 'admin',
-      appLogoImage: 'https://inkythuatso.com/uploads/thumbnails/800/2022/05/anh-meo-che-anh-meo-bua-17-09-00-01-36.jpg'  //require('@src/assets/images/logo/logo.svg').default
+      appLogoImage: 'https://inkythuatso.com/uploads/thumbnails/800/2022/05/anh-meo-che-anh-meo-bua-17-09-00-01-36.jpg',
+      appAvataDefault: 'https://inkythuatso.com/uploads/thumbnails/800/2022/05/anh-meo-che-anh-meo-bua-17-09-00-01-36.jpg' 
     },
     layout: {
       routerTransition: 'fadeIn', 
       contentWidth: 'boxed', 
       menu: {
         isHidden: false,
-        isCollapsed: false
+        isCollapsed: false,
+        widthMenuMax:250,
+        widthMenuMin:80
       },
       navbar: {
         type: 'floating', 
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        
       }
     }
   }

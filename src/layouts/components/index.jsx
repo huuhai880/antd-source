@@ -1,57 +1,43 @@
-// ** React Imports
-import React, { useState, useEffect } from 'react';
+import React from 'react'
 import './style.scss'
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined
-} from '@ant-design/icons';
-import { Layout as LayoutAntd, Breadcrumb, theme } from 'antd';
-import NavbarLayout from './navbar';
-const { Header, Sider, Content } = LayoutAntd;
-
-const Layout = ({ menu, navbar, footer, menuData, children, routerProps, setLastLayout, currentActiveItem }) => {
-
-  const [collapsed, setCollapsed] = useState(false);
-  const { token: { colorBgContainer } } = theme.useToken();
-
-  // ** States
-  const [isMounted, setIsMounted] = useState(false)
-
-  //** ComponentDidMount
-  useEffect(() => {
-    setIsMounted(true)
-    return () => setIsMounted(false)
-  }, [])
+import { HomeOutlined } from '@ant-design/icons'
+import { Layout as LayoutAntd, Breadcrumb, theme } from 'antd'
+import NavbarLayout from './navbar'
+import MenuLayout from './menu'
+import { useSelector } from 'react-redux'
+const { Content } = LayoutAntd
 
 
-  if (!isMounted) {
-    return null
-  }
+const Layout = ({ children }) => {
+
+  const { token: { colorBgContainer } } = theme.useToken()
+
+  // ** Store Vars
+  const layoutStore = useSelector(state => state.layout)
+  // ** Vars
+  const contentWidthMenu = layoutStore.contentWidthMenu
+
   return (
-    <LayoutAntd>
-      <NavbarLayout collapsed={collapsed} />
+    <LayoutAntd className='home_body'>
+      <MenuLayout />
+      <LayoutAntd className="site-layout" style={{ marginLeft: contentWidthMenu }}>
+        <NavbarLayout />
 
-      <LayoutAntd className="site-layout"  >
-        <Header theme="dark" style={{
-          padding: 0, background: colorBgContainer, height: '5vh'
-        }}
-        >
-          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-            className: 'trigger',
-            onClick: () => setCollapsed(!collapsed),
-          })}
-        </Header>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
+        <Breadcrumb style={{ margin: '16px' }}>
+          <Breadcrumb.Item href="">
+            <HomeOutlined />
+          </Breadcrumb.Item>
+          <Breadcrumb.Item href="">
+            <span>Application List</span>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>Application</Breadcrumb.Item>
         </Breadcrumb>
+
         <Content
           style={{
-            margin: '8px',
-            padding: 8,
-            height: '91vh',
-            background: '#DEDEDE',
+            padding: 16,
+            minHeight: '86vh',
+            background: colorBgContainer
           }}>
           {children}
         </Content>
@@ -59,5 +45,4 @@ const Layout = ({ menu, navbar, footer, menuData, children, routerProps, setLast
     </LayoutAntd>
   )
 }
-
 export default Layout

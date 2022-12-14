@@ -8,7 +8,7 @@ import navigation from '@src/navigation'
 const DefaultLayout = props => {
 
   return (
-    <Layout menuData={navigation} {...props}>
+    <Layout menuData={navigation}>
       {props.children}
     </Layout>
   )
