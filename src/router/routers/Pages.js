@@ -4,9 +4,8 @@ const PagesRoutes = [
   {
     path: '/',
     component: lazy(() => import('../../components/authentication/Login')),
-    layout: 'BlankLayout',
     meta: {
-      authRoute: true
+      publicRoute: true
     }
   },
   {

@@ -12,7 +12,7 @@ const LayoutWrapper = props => {
     // ** Store Vars
     const dispatch = useDispatch()
     const store = useSelector(state => state)
-    
+
     //** Vars
     const Tag = layout === 'HorizontalLayout' && !appLayout ? 'div' : Fragment
 
@@ -32,7 +32,7 @@ const LayoutWrapper = props => {
     // ** ComponentDidMount
     useEffect(() => {
         if (routeMeta) {
-           
+
             if (routeMeta.menuCollapsed) {
                 dispatch(handleMenuCollapsed(routeMeta.menuCollapsed))
             }
@@ -45,20 +45,12 @@ const LayoutWrapper = props => {
 
     return (
         <div>
-
-            <div>
-                <Tag
-                    /*eslint-disable */
-                    {...(layout === 'HorizontalLayout' && !appLayout
-                        ? { className: classnames({ 'content-body': !appLayout }) }
-                        : {})}
-                /*eslint-enable */
-                >   
-                   
-                    {children}
-                </Tag>
-            </div>
+            <Tag>
+               
+                {children}
+            </Tag>
         </div>
+
     )
 }
 
