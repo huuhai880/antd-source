@@ -52,7 +52,6 @@ const Layout = ({ menu, navbar, footer, menuData, children, routerProps, setLast
             padding: 8,
             height: '91vh',
             background: '#DEDEDE',
-            overflow: 'initial'
           }}>
           {children}
         </Content>
