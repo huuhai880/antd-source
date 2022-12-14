@@ -17,7 +17,7 @@ const BlankLayout = ({ children }) => {
 
   return (
     <div>
-      <div>{children}</div>
+      {children}
     </div>
   )
 }
