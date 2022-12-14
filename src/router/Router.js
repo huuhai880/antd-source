@@ -81,7 +81,7 @@ const Router = () => {
         //     // ** If none of the above render component
         //     return <route.component {...props} />
         // }
-        return <Navigate to='/' />
+        return <Navigate to='/login' />
     }
 
     // ** Return Route to Render
@@ -121,7 +121,7 @@ const Router = () => {
                                         path={route.path}
                                         exact={route.exact === true}
                                         render={props => {
-                                            // ** Assign props to routerProps
+                                            
                                             Object.assign(routerProps, {
                                                 ...props,
                                                 meta: route.meta
@@ -129,8 +129,6 @@ const Router = () => {
 
                                             return (
                                                 <Fragment>
-                                                    {/* Layout Wrapper to add classes based on route's layout, appLayout and className */}
-
                                                     {route.layout === 'BlankLayout' ? (
                                                         <Fragment>
                                                             <FinalRoute route={route} {...props} />
@@ -140,8 +138,7 @@ const Router = () => {
                                                             layout={DefaultLayout}
                                                             transition={transition}
                                                             setTransition={setTransition}
-                                                            /* Conditional props */
-                                                            /*eslint-disable */
+                                                            
                                                             {...(route.appLayout
                                                                 ? {
                                                                     appLayout: route.appLayout
@@ -157,7 +154,7 @@ const Router = () => {
                                                                     wrapperClass: route.className
                                                                 }
                                                                 : {})}
-                                                        /*eslint-enable */
+                                                      
                                                         >
                                                             <Suspense fallback={null}>
                                                                 <FinalRoute route={route} {...props} />
@@ -182,16 +179,16 @@ const Router = () => {
         <AppRouter basename={'/'}>
             <Switch>
                 {/* If user is logged in Navigate user to DefaultRoute else to login */}
-                <Route
+                {/* <Route
                     exact
                     path='/'
                     render={() => {
                         // return isUserLoggedIn() ? <Navigate to={DefaultRoute} /> : <Navigate to='/login' />
                         return <Navigate to={'/login'} />
                     }}
-                />
+                /> */}
                 {/* Not Auth Route */}
-                <Route
+                {/* <Route
                     exact
                     path='/not-authorized'
                     render={() => (
@@ -199,7 +196,7 @@ const Router = () => {
                             <NotAuthorized />
                         </Layouts.BlankLayout>
                     )}
-                />
+                /> */}
                 {ResolveRoutes()}
 
                 {/* NotFound Error page */}
