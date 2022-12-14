@@ -23,7 +23,6 @@ const Router = () => {
   // ** Hooks
   const { transition, setTransition } = useRouterTransition()
 
-  
   // ** Default Layout
   const DefaultLayout = 'VerticalLayout'
 
@@ -108,8 +107,6 @@ const Router = () => {
                      
                       return (
                         <Fragment>
-                          {/* Layout Wrapper to add classes based on route's layout, appLayout and className */}
-
                           {route.layout === 'BlankLayout' ? (
                             <Fragment>
                               <FinalRoute route={route} {...props} />
@@ -119,7 +116,6 @@ const Router = () => {
                               layout={DefaultLayout}
                               transition={transition}
                               setTransition={setTransition}
-                              /* Conditional props */
                               /*eslint-disable */
                               {...(route.appLayout
                                 ? {

@@ -1,11 +1,13 @@
 // ** Routes Imports
 import PagesRoutes from './Pages'
+import DashboardRoutes from './Dashboards'
 // ** Default Route
-const DefaultRoute = '/login'
+const DefaultRoute = '/dashboard'
 
 // ** Merge Routes
 const Routes = [
-    ...PagesRoutes
+    ...PagesRoutes,
+    ...DashboardRoutes
 ]
 
 export { DefaultRoute, Routes }
