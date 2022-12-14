@@ -2,10 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
+  MenuUnfoldOutlined
 } from '@ant-design/icons';
 import { Layout as LayoutAntd, Menu, theme } from 'antd';
 import NavbarLayout from './navbar';
