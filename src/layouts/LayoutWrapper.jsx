@@ -53,7 +53,8 @@ const LayoutWrapper = props => {
                         ? { className: classnames({ 'content-body': !appLayout }) }
                         : {})}
                 /*eslint-enable */
-                >
+                >   
+                   
                     {children}
                 </Tag>
             </div>

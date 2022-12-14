@@ -2,7 +2,7 @@ import { lazy } from 'react'
 
 const PagesRoutes = [
   {
-    path: '/login',
+    path: '/',
     component: lazy(() => import('../../components/authentication/Login')),
     layout: 'BlankLayout',
     meta: {

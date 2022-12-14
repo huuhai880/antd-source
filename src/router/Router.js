@@ -87,6 +87,9 @@ const Router = () => {
     // ** Return Route to Render
     const ResolveRoutes = () => {
 
+
+        // return <Route path="/" element={<BlankLayout />}> </Route>
+
         return Object.keys(Layouts).map((layout, index) => {
             // ** Convert Layout parameter to Layout Component
             // ? Note: make sure to keep layout and component name equal
@@ -96,81 +99,79 @@ const Router = () => {
             // ** Get Routes and Paths of the Layout
             const { LayoutRoutes, LayoutPaths } = LayoutRoutesAndPaths(layout)
 
-            // ** We have freedom to display different layout for different route
-            // ** We have made LayoutTag dynamic based on layout, we can also replace it with the only layout component,
-            // ** that we want to implement like VerticalLayout or HorizontalLayout
-            // ** We segregated all the routes based on the layouts and Resolved all those routes inside layouts
 
-            // ** RouterProps to pass them to Layouts
+
             const routerProps = {}
 
             return (
-                <Route path={LayoutPaths} key={index}>
-                    <LayoutTag
-                        layout={layout}
-                        transition={transition}
-                        routerProps={routerProps}
-                        setTransition={setTransition}
-                        currentActiveItem={currentActiveItem}
-                    >
-                        <Switch>
-                            {LayoutRoutes.map(route => {
-                                return (
-                                    <Route
-                                        key={route.path}
-                                        path={route.path}
-                                        exact={route.exact === true}
-                                        render={props => {
-                                            
-                                            Object.assign(routerProps, {
-                                                ...props,
-                                                meta: route.meta
-                                            })
+                <Route path={LayoutPaths[index]}
+                    element={
+                        <LayoutTag
+                            layout={layout}
+                            transition={transition}
+                            routerProps={routerProps}
+                            setTransition={setTransition}
+                            currentActiveItem={currentActiveItem}
+                        >
+                            <Switch>
+                                {LayoutRoutes.map(route => {
+                                    return (
+                                        <Route
+                                            key={route.path}
+                                            path={route.path}
+                                            exact={route.exact === true}
+                                            render={props => {
 
-                                            return (
-                                                <Fragment>
-                                                    {route.layout === 'BlankLayout' ? (
-                                                        <Fragment>
-                                                            <FinalRoute route={route} {...props} />
-                                                        </Fragment>
-                                                    ) : (
-                                                        <LayoutWrapper
-                                                            layout={DefaultLayout}
-                                                            transition={transition}
-                                                            setTransition={setTransition}
-                                                            
-                                                            {...(route.appLayout
-                                                                ? {
-                                                                    appLayout: route.appLayout
-                                                                }
-                                                                : {})}
-                                                            {...(route.meta
-                                                                ? {
-                                                                    routeMeta: route.meta
-                                                                }
-                                                                : {})}
-                                                            {...(route.className
-                                                                ? {
-                                                                    wrapperClass: route.className
-                                                                }
-                                                                : {})}
-                                                      
-                                                        >
-                                                            <Suspense fallback={null}>
+                                                Object.assign(routerProps, {
+                                                    ...props,
+                                                    meta: route.meta
+                                                })
+
+                                                return (
+                                                    <Fragment>
+                                                        {route.layout === 'BlankLayout' ? (
+                                                            <Fragment>
                                                                 <FinalRoute route={route} {...props} />
-                                                            </Suspense>
-                                                        </LayoutWrapper>
+                                                            </Fragment>
+                                                        ) : (
+                                                            <LayoutWrapper
+                                                                layout={DefaultLayout}
+                                                                transition={transition}
+                                                                setTransition={setTransition}
 
-                                                    )}
-                                                </Fragment>
-                                            )
-                                        }}
-                                    />
-                                )
-                            })}
-                        </Switch>
-                    </LayoutTag>
-                </Route>
+                                                                {...(route.appLayout
+                                                                    ? {
+                                                                        appLayout: route.appLayout
+                                                                    }
+                                                                    : {})}
+                                                                {...(route.meta
+                                                                    ? {
+                                                                        routeMeta: route.meta
+                                                                    }
+                                                                    : {})}
+                                                                {...(route.className
+                                                                    ? {
+                                                                        wrapperClass: route.className
+                                                                    }
+                                                                    : {})}
+
+                                                            >
+                                                                <Suspense fallback={null}>
+                                                                    <FinalRoute route={route} {...props} />
+                                                                </Suspense>
+                                                            </LayoutWrapper>
+
+                                                        )}
+                                                    </Fragment>
+                                                )
+                                            }}
+                                        />
+                                    )
+                                })}
+                            </Switch>
+                        </LayoutTag>
+                    } key={index}> </Route>
+                
             )
         })
     }
@@ -184,11 +185,11 @@ const Router = () => {
                     path='/'
                     render={() => {
                         // return isUserLoggedIn() ? <Navigate to={DefaultRoute} /> : <Navigate to='/login' />
-                        return <Navigate to={'/login'} />
+                        return <Navigate to={'/'} />
                     }}
                 /> */}
                 {/* Not Auth Route */}
-                {/* <Route
+                <Route
                     exact
                     path='/not-authorized'
                     render={() => (
@@ -196,7 +197,7 @@ const Router = () => {
                             <NotAuthorized />
                         </Layouts.BlankLayout>
                     )}
-                /> */}
+                />
                 {ResolveRoutes()}
 
                 {/* NotFound Error page */}

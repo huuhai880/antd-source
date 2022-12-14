@@ -1,7 +1,7 @@
 // ** Routes Imports
 import PagesRoutes from './Pages'
 // ** Default Route
-const DefaultRoute = '/login'
+const DefaultRoute = '/'
 
 // ** Merge Routes
 const Routes = [

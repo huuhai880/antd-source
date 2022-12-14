@@ -1,5 +1,7 @@
 // ** Navigation imports
-
+import users from './users'
 
 // ** Merge & Export
-export default []
+export default [
+    ...users
+]

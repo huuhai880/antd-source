@@ -9,6 +9,7 @@ const DefaultLayout = props => {
 
   return (
     <Layout menuData={navigation} {...props}>
+      DefaultLayout
       {props.children}
     </Layout>
   )
