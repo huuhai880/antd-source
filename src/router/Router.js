@@ -52,15 +52,12 @@ const Router = () => {
 
   const NotAuthorized = lazy(() => import('@src/layouts/NotAuthorized'))
 
-  // ** Init Error Component
-  const Error = lazy(() => import('@src/layouts/Error'))
-
   /**
    ** Final Route Component Checks for Login & User Role and then redirects to the route
    */
   const FinalRoute = props => {
     const route = props.route
-   
+
     if (route.meta && route.meta.authRoute) {
       // ** If route has meta and authRole and user is Logged in then redirect user to home page (DefaultRoute)
       return <Redirect to='/' />
@@ -73,7 +70,7 @@ const Router = () => {
   // ** Return Route to Render
   const ResolveRoutes = () => {
     return Object.keys(Layouts).map((layout, index) => {
-  
+
       const LayoutTag = Layouts[layout]
 
       // ** Get Routes and Paths of the Layout
@@ -92,7 +89,7 @@ const Router = () => {
           >
             <Switch>
               {LayoutRoutes.map(route => {
-                
+
                 return (
                   <Route
                     key={route.path}
@@ -104,7 +101,7 @@ const Router = () => {
                         ...props,
                         meta: route.meta
                       })
-                     
+
                       return (
                         <Fragment>
                           {route.layout === 'BlankLayout' ? (
@@ -119,20 +116,20 @@ const Router = () => {
                               /*eslint-disable */
                               {...(route.appLayout
                                 ? {
-                                    appLayout: route.appLayout
-                                  }
+                                  appLayout: route.appLayout
+                                }
                                 : {})}
                               {...(route.meta
                                 ? {
-                                    routeMeta: route.meta
-                                  }
+                                  routeMeta: route.meta
+                                }
                                 : {})}
                               {...(route.className
                                 ? {
-                                    wrapperClass: route.className
-                                  }
+                                  wrapperClass: route.className
+                                }
                                 : {})}
-                              /*eslint-enable */
+                            /*eslint-enable */
                             >
                               <Suspense fallback={null}>
                                 <FinalRoute route={route} {...props} />
@@ -160,7 +157,7 @@ const Router = () => {
           exact
           path='/'
           render={() => {
-            return  <Redirect to={DefaultRoute} />
+            return <Redirect to={DefaultRoute} />
           }}
         />
         {/* Not Auth Route */}
@@ -176,7 +173,9 @@ const Router = () => {
         {ResolveRoutes()}
 
         {/* NotFound Error page */}
-        <Route path='*' render={<Error/>} />
+        <Route path='*' render={() => {
+          return <Redirect to={'/404'} />
+        }} />
       </Switch>
     </AppRouter>
   )

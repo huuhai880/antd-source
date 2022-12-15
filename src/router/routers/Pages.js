@@ -16,6 +16,14 @@ const PagesRoutes = [
     meta: {
       publicRoute: true
     }
+  },
+  {
+    path: '/404',
+    component: lazy(() => import('../../layouts/Error')),
+    layout: 'BlankLayout',
+    meta: {
+      publicRoute: true
+    }
   }
 
 ]
