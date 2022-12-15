@@ -38,7 +38,7 @@ const Router = () => {
     const LayoutPaths = []
 
     if (Routes) {
-      
+
       Routes.filter(route => {
         // ** Checks if Route layout or Default layout matches current layout
         if (route.layout === layout || (route.layout === undefined && DefaultLayout === layout)) {
@@ -174,9 +174,7 @@ const Router = () => {
         {ResolveRoutes()}
 
         {/* NotFound Error page */}
-        <Route path='*' render={() => {
-          return <Redirect to={'/404'} />
-        }} />
+        <Route path='*' render={() => {return <Redirect to={'/404'} />}} />
       </Switch>
     </AppRouter>
   )
