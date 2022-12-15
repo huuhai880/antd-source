@@ -36,7 +36,7 @@ const Layout = ({ children }) => {
         <Content
           style={{
             padding: 16,
-            minHeight: '86vh',
+            minHeight: '100vh',
             background: colorBgContainer
           }}>
           {children}
