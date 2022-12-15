@@ -6,7 +6,6 @@ const LayoutWrapper = props => {
     return (
         <div>
             {children}
-
         </div>
 
     )
