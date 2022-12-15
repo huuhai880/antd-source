@@ -4,7 +4,7 @@ import '../style.scss'
 import { AppstoreOutlined, MailOutlined, SettingOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import { Layout as LayoutAntd, Menu } from 'antd'
 import { useSelector } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 const { Sider } = LayoutAntd
 
 const items = [
@@ -15,9 +15,9 @@ const items = [
         children: [
             {
                 key: 'list',
-                label: 'Quản lý nhân viên',
+                label: <Link to={'/user'}>Quản lý nhân viên</Link>,
                 icon: <AppstoreOutlined />,
-                routes:['/user']
+                
             }
         ]
     }
