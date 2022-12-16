@@ -1,10 +1,10 @@
-const Dashboard = () => {
+const User = () => {
 
     return (
         <div>
-            Dasboard
+            User
         </div>
     )
 }
 
-export default Dashboard
+export default User

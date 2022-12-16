@@ -20,7 +20,8 @@ const Layout = ({ children }) => {
   return (
     <LayoutAntd className='home_body'>
       <MenuLayout />
-      <LayoutAntd className="site-layout" style={{ marginLeft: contentWidthMenu }}>
+      <LayoutAntd  style={{ marginLeft: contentWidthMenu }}>
+
         <NavbarLayout />
 
         <Breadcrumb style={{ margin: '16px' }}>
@@ -37,7 +38,8 @@ const Layout = ({ children }) => {
           style={{
             padding: 16,
             minHeight: '100vh',
-            background: colorBgContainer
+            background: colorBgContainer,
+            margin: '24px 16px 0'
           }}>
           {children}
         </Content>

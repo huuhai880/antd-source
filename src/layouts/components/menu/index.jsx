@@ -9,6 +9,12 @@ const { Sider } = LayoutAntd
 
 const items = [
     {
+        key: '/dashboard',
+        label: <Link to={'/dashboard'}>Dashboard</Link>,
+        icon: <SettingOutlined />,
+        
+    },
+    {
         key: '/users',
         label: 'Nhân sự',
         icon: <SettingOutlined />,
@@ -52,6 +58,7 @@ const MenuLayout = () => {
                 mode="inline"
                 defaultSelectedKeys={['1']}
                 items={items}
+                theme="dark"
             />
         </Sider>
 
