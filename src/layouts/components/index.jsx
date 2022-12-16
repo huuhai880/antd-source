@@ -19,8 +19,9 @@ const Layout = ({ children }) => {
 
   return (
     <LayoutAntd className='home_body'>
+
       <MenuLayout />
-      <LayoutAntd  style={{ marginLeft: contentWidthMenu }}>
+      <LayoutAntd style={{ marginLeft: contentWidthMenu }}>
 
         <NavbarLayout />
 

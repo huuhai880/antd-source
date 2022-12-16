@@ -27,7 +27,7 @@ const NavbarLayout = () => {
             style={{
                 padding: 0,
                 background: colorBgContainer,
-                position: 'sticky', top: 0, zIndex: 1, width: '100%'
+                // position: 'sticky', top: 0, zIndex: 1, width: '100%'
             }}
         >
             <div className='bw_body_header'>
