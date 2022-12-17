@@ -23,13 +23,9 @@ const NavbarLayout = () => {
     const setMenuCollapsed = val => dispatch(handleMenuCollapsed(val))
 
     return (
-        <Header
-            style={{
-                padding: 0,
-                background: colorBgContainer,
-                // position: 'sticky', top: 0, zIndex: 1, width: '100%'
-            }}
-        >
+
+        <Header className="header">
+            <div className="logo" />
             <div className='bw_body_header'>
                 {React.createElement(menuCollapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                     className: 'trigger',

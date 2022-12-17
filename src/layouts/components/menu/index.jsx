@@ -52,7 +52,6 @@ const MenuLayout = () => {
                 bottom: 0,
                 borderRight: 0
             }} className="overflow_navbar">
-            <div className="logo" />
             <Menu
                 style={{ width: contentWidthMenu }}
                 mode="inline"
