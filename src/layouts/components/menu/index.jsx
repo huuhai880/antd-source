@@ -4,7 +4,7 @@ import '../style.scss'
 import { AppstoreOutlined, MailOutlined, SettingOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import { Layout as LayoutAntd, Menu } from 'antd'
 import { useSelector } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const { Sider } = LayoutAntd
 
 const items = [
@@ -12,7 +12,7 @@ const items = [
         key: '/dashboard',
         label: <Link to={'/dashboard'}>Dashboard</Link>,
         icon: <SettingOutlined />,
-        
+
     },
     {
         key: '/users',
@@ -23,7 +23,7 @@ const items = [
                 key: 'list',
                 label: <Link to={'/user'}>Quản lý nhân viên</Link>,
                 icon: <AppstoreOutlined />,
-                
+
             }
         ]
     }
@@ -51,6 +51,7 @@ const MenuLayout = () => {
                 bottom: 0,
                 borderRight: 0
             }} className="overflow_navbar">
+            <div className="logo" style={{ width: contentWidthMenu }} />
             <Menu
                 style={{ width: contentWidthMenu }}
                 mode="inline"

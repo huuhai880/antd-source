@@ -1,14 +1,35 @@
 // ** React Imports
 import React from 'react'
 import './style-navbar.scss'
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
-import { Layout as LayoutAntd, theme, Avatar } from 'antd'
+import { MenuUnfoldOutlined, MenuFoldOutlined, LogoutOutlined, SettingOutlined } from '@ant-design/icons'
+import { Layout as LayoutAntd, theme, Avatar, Dropdown } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import { handleMenuCollapsed } from '@store/layout'
 import themeConfig from '@configs/themeConfig'
-
-
 const { Header } = LayoutAntd
+
+const items = [
+    {
+        key: '1',
+        label: (
+            <span>
+                Cài đặt
+            </span>
+        ),
+        icon: <SettingOutlined />
+    },
+    {
+        key: '2',
+        label: (
+            <span >
+                Đăng xuất
+            </span>
+        ),
+        icon: <LogoutOutlined />
+    },
+
+]
+
 const HeaderLayout = () => {
 
     const { token: { colorBgContainer } } = theme.useToken()
@@ -18,23 +39,22 @@ const HeaderLayout = () => {
     const layoutStore = useSelector(state => state.layout)
     // ** Vars
     const menuCollapsed = layoutStore.menuCollapsed
-    const contentWidthMenu = layoutStore.contentWidthMenu
-
     // ** Toggles Menu Collapsed
     const setMenuCollapsed = val => dispatch(handleMenuCollapsed(val))
 
     return (
 
-        <Header style={{ padding: 0, backgroundColor: colorBgContainer }}>
-            <div className="logo" style={{ width: contentWidthMenu }} />
+        <Header style={{ padding: '0px 16px 0px 0px', backgroundColor: colorBgContainer, position: 'sticky', top: 0, zIndex: 1, width: '100%'  }}>
+            
             <div className='bw_body_header'>
                 {React.createElement(menuCollapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                     className: 'trigger',
                     onClick: () => setMenuCollapsed(!menuCollapsed)
                 })}
                 <div>
-                    <i className="fi fi-rr-bell" style={{color:'black'}}></i>
-                    <Avatar size={40} src={themeConfig.app.appAvataDefault} />
+                    <Dropdown menu={{ items }} overlayStyle={{ width: 150, textAlign: 'center' }}>
+                        <Avatar size={40} src={themeConfig.app.appAvataDefault} />
+                    </Dropdown>
                 </div>
             </div>
         </Header>

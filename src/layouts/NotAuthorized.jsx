@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const NotAuthorized = () => {
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',height:'100vh' }}>
       <Result
         status="403"
         title="403"

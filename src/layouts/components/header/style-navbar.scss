@@ -3,6 +3,10 @@
     justify-content: space-between;
     align-items: center;
     padding-right: 16px;
+    >.bw-dropdown-content{
+        width: 300px !important;
+        background-color: red;
+    }
 }
 
 .trigger {
@@ -15,9 +19,4 @@
 
 .trigger:hover {
     color: #1890ff;
-}
-
-.logo {
-    float: left;
-    height: 100%;
 }
