@@ -1,36 +1,11 @@
 // ** React Imports
 import React from 'react'
 import '../style.scss'
-import { AppstoreOutlined, MailOutlined, SettingOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import { Layout as LayoutAntd, Menu } from 'antd'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 const { Sider } = LayoutAntd
 
-const items = [
-    {
-        key: '/dashboard',
-        label: <Link to={'/dashboard'}>Dashboard</Link>,
-        icon: <SettingOutlined />,
-
-    },
-    {
-        key: '/users',
-        label: 'Nhân sự',
-        icon: <SettingOutlined />,
-        children: [
-            {
-                key: 'list',
-                label: <Link to={'/user'}>Quản lý nhân viên</Link>,
-                icon: <AppstoreOutlined />,
-
-            }
-        ]
-    }
-
-]
-
-const MenuLayout = () => {
+const MenuLayout = ({menuData}) => {
     // ** Store Vars
     const layoutStore = useSelector(state => state.layout)
     // ** Vars
@@ -56,7 +31,7 @@ const MenuLayout = () => {
                 style={{ width: contentWidthMenu }}
                 mode="inline"
                 defaultSelectedKeys={['1']}
-                items={items}
+                items={menuData}
                 theme="dark"
             />
         </Sider>

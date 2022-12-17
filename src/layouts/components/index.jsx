@@ -6,14 +6,14 @@ import MenuLayout from './menu'
 const { Content, Footer } = LayoutAntd
 
 
-const Layout = ({ children }) => {
+const Layout = ({ menuData, children }) => {
 
   const { token: { colorBgContainer } } = theme.useToken()
 
   return (
 
     <LayoutAntd>
-      <MenuLayout />
+      <MenuLayout menuData={menuData} />
       <LayoutAntd>
         <HeaderLayout />
         <LayoutAntd style={{ padding: '0 8px 8px' }}>
@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
               padding: 8,
               margin: 0,
               minHeight: 280,
-              background: colorBgContainer,
+              background: colorBgContainer
             }}
           >
             {children}
