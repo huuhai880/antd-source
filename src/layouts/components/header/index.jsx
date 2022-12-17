@@ -9,7 +9,7 @@ import themeConfig from '@configs/themeConfig'
 
 
 const { Header } = LayoutAntd
-const NavbarLayout = () => {
+const HeaderLayout = () => {
 
     const { token: { colorBgContainer } } = theme.useToken()
 
@@ -18,24 +18,28 @@ const NavbarLayout = () => {
     const layoutStore = useSelector(state => state.layout)
     // ** Vars
     const menuCollapsed = layoutStore.menuCollapsed
+    const contentWidthMenu = layoutStore.contentWidthMenu
 
     // ** Toggles Menu Collapsed
     const setMenuCollapsed = val => dispatch(handleMenuCollapsed(val))
 
     return (
 
-        <Header className="header">
-            <div className="logo" />
+        <Header style={{ padding: 0, backgroundColor: colorBgContainer }}>
+            <div className="logo" style={{ width: contentWidthMenu }} />
             <div className='bw_body_header'>
                 {React.createElement(menuCollapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                     className: 'trigger',
                     onClick: () => setMenuCollapsed(!menuCollapsed)
                 })}
-                <Avatar src={themeConfig.app.appAvataDefault} />
+                <div>
+                    <i className="fi fi-rr-bell" style={{color:'black'}}></i>
+                    <Avatar size={40} src={themeConfig.app.appAvataDefault} />
+                </div>
             </div>
         </Header>
 
     )
 }
 
-export default NavbarLayout
+export default HeaderLayout
